@@ -11,7 +11,7 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.utils import plot_model
 from sklearn.metrics import mean_squared_error
 import pandas as pd
-from utils.metrics import calculate_dcg, calculate_hit_ratio
+from utils.metrics import calc_avg_dcg
 import matplotlib.pyplot as plt
 import time
 import tensorflow as tf
@@ -76,14 +76,10 @@ test['predictions'] = predictions
 # Create list of tuples in the format (user_id, item_id, rating, prediction, None)
 predictions_list = [(user_id, item_id, rating, pred, None) for user_id, item_id, rating, pred in test[['user_id', 'item_id', 'rating', 'predictions']].itertuples(index=False, name=None)]
 
-# Calculate hit ratio
-hit_ratio = calculate_hit_ratio(predictions_list)
-print(f'Hit Ratio: {hit_ratio}')
-
 testset_list = list(test[['user_id', 'item_id', 'rating']].itertuples(index=False, name=None))
 
 # Calculate DCG
-dcg = calculate_dcg(predictions_list, testset_list)
+dcg = calc_avg_dcg(predictions_list, testset_list)
 print(f'DCG: {dcg}')
 
 

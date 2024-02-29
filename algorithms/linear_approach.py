@@ -17,7 +17,6 @@ models = [
     ('Ridge Regression', Ridge()),
     ('Lasso Regression', Lasso()),
     ('Random Forest', RandomForestRegressor()),
-    ('Linear Regression', LinearRegression()),
     ('Gradient Boosting', GradientBoostingRegressor()),
 ]
 

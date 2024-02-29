@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from data_prep.dataprep import DataPrep
-from utils.metrics import calculate_dcg, calculate_hit_ratio
+from utils.metrics import calculate_dcg, calculate_hit_ratio, calc_avg_dcg
 from data_prep.dataprep import DataPrep
 import time
 import pandas as pd
@@ -66,13 +66,12 @@ print(f"Prediction time: {prediction_time} seconds")
 
 # Then compute RMSE
 rmse = accuracy.rmse(predictions)
-hit_rate = calculate_hit_ratio(predictions)
-avg_dcg = calculate_dcg(predictions, testset)
-
+# hit_rate = calculate_hit_ratio(predictions, testset, 5)
+# avg_dcg = calculate_dcg(predictions, testset, 5)
+ndcg = calc_avg_dcg(predictions, testset)
 
 print(f"RMSE score: {rmse}")
-print(f" Hit Ratio: {hit_rate}")
-print(f" DCG: {avg_dcg}")
+print(f"NDCg:{ndcg}")
 
 
 ###########################-----RESULTS--------###################

@@ -10,7 +10,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 from data_prep.dataprep import DataPrep
 from itertools import product
 import time
-from utils.metrics import calculate_dcg, calculate_hit_ratio
+from utils.metrics import calc_avg_dcg
 
 data: DataPrep = DataPrep(data_path="data")
 reader = Reader(rating_scale=(1,5))
@@ -59,8 +59,7 @@ for params in param_combinations:
         best_rmse = rmse
         best_params = params
         
-        hit_rate = calculate_hit_ratio(predictions)
-        avg_dcg = calculate_dcg(predictions, testset)
+        avg_dcg = calc_avg_dcg(predictions, testset)
         
         if avg_dcg > best_dcg:
             best_dcg = avg_dcg
@@ -75,7 +74,6 @@ for param_name, param_value in zip(param_values.keys(), best_params):
     print(f"{param_name}: {param_value}")
 
 # Print the best Hit Ratio and DCG
-print(f"Best Hit Ratio: {hit_rate}")
 print(f"Best DCG: {best_dcg}")
 
 

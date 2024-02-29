@@ -51,10 +51,12 @@ class NCFHyperModel(HyperModel):
         # MF layer
         user_mf_embedding_flat = Flatten()(user_mf_embedding)
         item_mf_embedding_flat = Flatten()(item_mf_embedding)
-        mf_multiply = Dot(axes=1)([user_mf_embedding_flat, item_mf_embedding_flat])
+        # mf_multiply = Dot(axes=1)([user_mf_embedding_flat, item_mf_embedding_flat])
+        mf_elementwise_multiply = Multiply()([user_mf_embedding_flat, item_mf_embedding_flat])
+        gmf_layer = Dense(units=embed_size, activation='relu')(mf_elementwise_multiply)
 
         # Combine MLP and MF
-        combine_mlp_mf = Concatenate()([mlp_dropout, mf_multiply])
+        combine_mlp_mf = Concatenate()([mlp_dropout, gmf_layer])
 
         # Result layer
         result = Dense(units=1)(combine_mlp_mf)
