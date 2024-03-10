@@ -17,5 +17,5 @@ Recommendation systems play a pivotal role in today's technology-dominated world
 
 This multi-faceted approach, leveraging a combination of machine learning algorithms, aimed to tackle the complexities of recommendation systems and address the challenge of information overload by providing more accurate and personalized recommendations.
 
-##Conclusion: 
+## Conclusion: 
 This work focuses on exploring, implementing, and comparing various techniques used in recommendation systems, offering a comprehensive overview from basic concepts like collaborative filtering and content-based methods to advanced hybrid systems. An exploratory data analysis was conducted on a real movie dataset, leading to the development and comparison of several machine learning algorithms. Ultimately, a novel recommendation system combining deep neural networks with non-negative matrix factorization was presented, focusing on leveraging user rating histories to identify relationships. While the system achieved satisfactory results, there are opportunities for further optimization and development. Future research could include A/B testing in a real production environment to more accurately evaluate system functionality and user behavior. Additionally, enriching the system with more user features and advanced technologies could enhance recommendation effectiveness.
